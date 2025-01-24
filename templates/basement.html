@@ -1,0 +1,51 @@
+<style>
+  footer {
+    background-color: #228B22;
+    padding: 20px 0;
+  }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .btn {
+    display: inline-block;
+    font-weight: bold;
+    color: #228B22;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-primary {
+    background-color: #f8f9fa;
+  }
+
+  .btn-success {
+    background-color: #f8f9fa;
+  }
+
+  .btn:hover {
+    opacity: 0.85;
+  }
+</style>
+
+<footer>
+  <div class="container">
+    <div class="row">
+        {% if is_auth %}
+        <a href="/admin" class="btn btn-success">Панель управления турами</a>
+        {% else %}
+        <a href="/login" class="btn btn-primary">Стать партнером</a>
+        {% endif %}
+    </div>
+  </div>
+</footer>

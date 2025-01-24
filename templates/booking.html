@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бронирование тура</title>
+    <link rel="stylesheet" href="/static/booking.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Анкета для бронирования</h1>
+        <form action="/booking/tour/submit" method="POST" class="booking-form" id="bookingForm" enctype="multipart/form-data">
+            <input type="hidden" name="tour_id" value="{{ tour.id }}">
+            <label for="full-name">ФИО:</label>
+            <input type="text" id="full-name" name="full_name" required placeholder="Введите ваше ФИО">
+            <div class="error">Пожалуйста, введите ваше ФИО</div>
+
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" name="phone" required placeholder="Введите ваш телефон" pattern="^\+?[0-9]{11,15}$">
+            <div class="error">Пожалуйста, введите корректный номер телефона</div>
+
+            <label for="email">Электронная почта:</label>
+            <input type="email" id="email" name="email" required placeholder="Введите ваш email">
+            <div class="error">Пожалуйста, введите корректный email</div>
+
+            <button type="submit" class="submit-btn">Забронировать</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование туров</title>
+    <link rel="stylesheet" href="/static/edit_tour.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card-list">
+            <div class="card" onclick="window.location.href='/admin'">
+            <h2>Ваши туры</h2>
+            </div>
+            {% for tour in tours %}
+            <div class="card" onclick="window.location.href='/admin/edit_tour/{{ tour.id }}'">
+                <img src="/static/photo/{{ tour.photo }}" alt="{{ tour.title }}">
+                <h3>{{ tour.title }}</h3>
+                <p>Дата начала: {{ tour.start_time }}</p>
+                <p>Длительность: {{ tour.duration }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% if is_edit %}
+        <div class="form-section">
+            <h2>Редактировать тур</h2>
+            <form action="/update-tour" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="tour_id" value="{{ current_tour.id }}">
+                <label for="title">Название тура</label>
+                <input value="{{ current_tour.title }}" type="text" id="title" name="title" required>
+
+                <label for="start_time">Дата начала</label>
+                <input value="{{ current_tour.start_time }}" type="text" id="start_time" name="start_time" placeholder="дд.мм.гггг чч:мм" required>
+
+                <label for="duration">Длительность</label>
+                <input value="{{ current_tour.duration }}" type="text" id="duration" name="duration" placeholder="Количество дней" required>
+
+                <label for="route">Маршрут</label>
+                <input value="{{ current_tour.route }}" type="text" id="route" name="route" required>
+
+                <label for="tags">Теги</label>
+                <input value="{{ current_tour.tags }}" type="text" id="tags" name="tags" placeholder="Теги через запятую" required>
+
+                <label for="description">Описание</label>
+                <textarea id="description" name="description" rows="4">{{ descriptions.description }}</textarea>
+
+                <button type="submit">Изменить</button>
+            </form>
+        </div>
+        {% else %}
+        <a class="add-tour-btn" href="/add_tour">Создать тур</a>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.form-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-form label {
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.booking-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.booking-form input[type="text"],
+.booking-form input[type="tel"],
+.booking-form input[type="email"] {
+    width: 100%;
+}
+
+.submit-btn {
+    padding: 12px 25px;
+    font-size: 18px;
+    background-color: #228B22;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #228C22;
+}
+
+
+.error {
+    display: none;
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+
+input:invalid + .error {
+    display: block;
+}
+
+input:focus:invalid {
+    border-color: #ff0000;
+}
+
+a {
+    text-decoration: none;
+}

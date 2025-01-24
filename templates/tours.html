@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <title>Башматур</title>
+    <link rel="stylesheet" href="/static/home.css">
+</head>
+<body>
+    <div class="header">
+        <img src="/static/logo.png" alt="Логотип сайта" class="logo">
+        <div class="center-text">БАШМАТУР</div>
+        <form method="GET" action="/tours">
+            <input type="text" name="search" placeholder="Поиск по тегу, названию или турфирме..." value="{{ search_query }}">
+            <button type="submit">Искать</button>
+        </form>
+    </div>
+
+    <div class="container">
+    {% for tour in tours %}
+    <div class="card" onclick="window.location.href='/tour/{{ tour.id }}'">
+        {% if tour.photo %}
+        <img src="static/photo/{{ tour.photo }}" alt="Фото тура" class="card-photo">
+        {% endif %}
+        <h2>{{ tour.title }}</h2>
+        <p class="agency">{{ tour.tour_agency }}</p>
+        <p><strong>Начало:</strong> {{ tour.start_time }}</p>
+        <p><strong>Длительность:</strong> {{ tour.duration }}</p>
+        <p><strong>Маршрут:</strong> {{ tour.route }}</p>
+        <p class="tags">{{ tour.tags }}</p>
+    </div>
+    {% endfor %}
+    {% if tours|length == 0 %}
+    <p style="text-align: center; font-size: 18px; color: #555;">Ничего не найдено.</p>
+    {% endif %}
+</div>
+{% extends "basement.html" %}
+</body>
+</html>

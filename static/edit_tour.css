@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.card-list {
+    width: 30%;
+    background-color: #228B22;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Скролл для большого количества карточек */
+    max-height: 100vh; /* Высота списка карточек ограничена высотой экрана */
+}
+
+.card-list h2 {
+    text-align: center;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #b7e4c7;
+    margin-bottom: 15px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.form-section {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input, form textarea, form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form input[type="file"] {
+    padding: 0;
+}
+
+form button {
+    background-color: #228B22;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #227B22;
+}
+
+form a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #228B22;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    margin-left: 30%;
+    margin-right: auto;
+}
+
+form a:hover {
+    background-color: #227B22;
+}
+
+.add-tour-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 50px;
+    background-color: #228B22;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    margin-top: 24%;
+    margin-left: 30%;
+}
+
+.add-tour-btn:hover {
+    background-color: #227B22;
+}

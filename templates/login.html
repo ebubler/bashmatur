@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+<body>
+    <form id="login-form">
+        <h2>Авторизация</h2>
+        <label for="email">Логин</label>
+        <input type="text" id="email" placeholder="Введите логин" required>
+        <label for="password">Пароль</label>
+        <input type="password" id="password" placeholder="Введите пароль" required>
+        <span class="error-message">Неверный логин или пароль.</span>
+        <input type="submit" value="Войти">
+    </form>
+    <script>
+        document.getElementById('login-form').onsubmit = function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (password.length < 6) {
+                showErrorMessage('Пароль должен содержать минимум 6 символов.');
+                return;
+            }
+
+            // Отправка данных на сервер
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = '/tours';
+                } else {
+                    showErrorMessage('Неверный логин или пароль.');
+                }
+            });
+        };
+
+        function showErrorMessage(message) {
+            const errorMessage = document.querySelector('.error-message');
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ tour.title }}</title>
+    <link rel="stylesheet" href="/static/tour.css">
+</head>
+<body>
+    <div class="container">
+        <div class="carousel">
+            <button class="nav prev">◀</button>
+                <div class="carousel-images">
+                    {% for img in description.photo2.split(', ') %}
+                        <div class="carousel-img-wrapper">
+                            <img src="/static/photo/{{ img }}" alt="Фото тура" class="carousel-img">
+                        </div>
+                    {% endfor %}
+                </div>
+            <button class="nav next">▶</button>
+        </div>
+
+        <div class="tour-info">
+            <h1>{{ tour.title }}</h1>
+            <p>{{ description.description }}</p>
+            <h2>В программе:</h2>
+            <p>{{ description.include }}</p>
+            <h2>Маршрут:</h2>
+            <p>{{ tour.route }}</p>
+            <p><strong>Старт:</strong> {{ tour.start_time }}, {{ tour.tour_agency }}</p>
+            <p><strong>Продолжительность:</strong> {{ tour.duration }}</p>
+            <div class="buttons">
+                <a href="/agency/{{ tour.agency_id }}" class="btn">Туры от {{ tour.tour_agency }}</a>
+                <a href="/booking/tour/{{ tour.id }}" class="btn book-btn">Забронировать</a>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+
+    <script src="/static/tour.js"></script>
+</body>
+</html>

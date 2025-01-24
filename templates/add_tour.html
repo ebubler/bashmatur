@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/add_tour.css">
+    <title>Добавить тур</title>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Добавить новый тур</h1>
+        <form method="POST" action="/add_tour" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Название тура</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="start_time">Дата начала</label>
+                <input type="text" id="start_time" name="start_time" required>
+            </div>
+            <div class="form-group">
+                <label for="duration">Длительность</label>
+                <input type="text" id="duration" name="duration" required>
+            </div>
+            <div class="form-group">
+                <label for="route">Маршрут</label>
+                <input type="text" id="route" name="route" required>
+            </div>
+            <div class="form-group">
+                <label for="tags">Теги</label>
+                <input type="text" id="tags" name="tags">
+            </div>
+            <div class="form-group">
+                <label for="photos">Добавить фото</label>
+                <input type="file" id="photos" name="photos" accept="image/*" multiple><br><br>
+            </div>
+            <div class="form-group">
+                <label for="description">Описание</label>
+                <textarea id="description" name="description" rows="6" required></textarea>
+            </div>
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+</body>
+</html>
