@@ -264,7 +264,7 @@ async def submit_form(
 
 
 async def main():
-    server = Server(Config(app))
+    server = Server(Config(app, port='80'))
     await server.serve()
 
 
