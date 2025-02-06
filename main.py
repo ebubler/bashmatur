@@ -246,8 +246,8 @@ async def edit_agency_request(
             with open(f'static/photo/tour_{data.get("tour_agency_id")}_{i}.png', 'wb') as buffer:
                 shutil.copyfileobj(photos[i].file, buffer)
             filenames.append(f'agency_{data.get("tour_agency_id")}_{i}.png')
-
-        db.photos_update_agency(data.get("tour_agency_id"), filenames)
+        if filenames:
+            db.photos_update_agency(data.get("tour_agency_id"), filenames)
 
         return templates.TemplateResponse(request=request, name="tour_added.html")
     return "NO PERMISSION"
