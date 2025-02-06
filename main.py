@@ -237,16 +237,17 @@ async def edit_agency_request(
 ):
     data = decode_jwt(request.cookies.get("Authorization"))
     if db.login_user(data.get("email"), data.get("password")):
-        print(data.get("tour_agency_id"))
+        print(data.get("tour_agency_id"), photos[0].filename)
         db.edit_agency(title, url, contacts, about_us, data.get("tour_agency_id"))
 
-        filenames = []
+        if photos[0].filename:
+            filenames = []
 
-        for i in range(len(photos)):
-            with open(f'static/photo/agency_{data.get("tour_agency_id")}_{i}.png', 'wb') as buffer:
-                shutil.copyfileobj(photos[i].file, buffer)
-            filenames.append(f'agency_{data.get("tour_agency_id")}_{i}.png')
-        if filenames:
+            for i in range(len(photos)):
+                with open(f'static/photo/agency_{data.get("tour_agency_id")}_{i}.png', 'wb') as buffer:
+                    shutil.copyfileobj(photos[i].file, buffer)
+                filenames.append(f'agency_{data.get("tour_agency_id")}_{i}.png')
+            print(filenames)
             db.photos_update_agency(data.get("tour_agency_id"), filenames)
 
         return templates.TemplateResponse(request=request, name="tour_added.html")
@@ -306,7 +307,7 @@ async def submit_form(
 
 
 async def main():
-    server = Server(Config(app, port=80, host='0.0.0.0'))
+    server = Server(Config(app, port=80, host='localhost'))
     await server.serve()
 
 
