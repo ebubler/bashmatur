@@ -225,6 +225,48 @@ async def admin_edit_tour(request: Request, tour_id: int = None):
     })
 
 
+@app.post("/update-agency")
+@limiter.limit("120/minute")
+async def edit_agency_request(
+        request: Request,
+        photos: list[UploadFile] = File(...),
+        title: str = Form(...),
+        url: str = Form(...),
+        contacts: str = Form(...),
+        about_us: str = Form(...)
+):
+    data = decode_jwt(request.cookies.get("Authorization"))
+    if db.login_user(data.get("email"), data.get("password")):
+        print(data.get("tour_agency_id"))
+        db.edit_agency(title, url, contacts, about_us, data.get("tour_agency_id"))
+
+        filenames = []
+
+        for i in range(len(photos)):
+            with open(f'static/photo/tour_{data.get("tour_agency_id")}_{i}.png', 'wb') as buffer:
+                shutil.copyfileobj(photos[i].file, buffer)
+            filenames.append(f'tour_{data.get("tour_agency_id")}_{i}.png')
+
+        db.photos_update_agency(data.get("tour_agency_id"), filenames)
+
+        return templates.TemplateResponse(request=request, name="tour_added.html")
+    return "NO PERMISSION"
+
+
+@app.get("/admin", response_class=HTMLResponse)
+@app.get("/admin/edit_prof", response_class=HTMLResponse)
+@limiter.limit("120/minute")
+async def admin_edit_tour(request: Request, tour_id: int = None):
+    tour_agency_id = decode_jwt(request.cookies.get("Authorization")).get("tour_agency_id")
+    if not tour_agency_id:
+        return "NO PERMISSION"
+    args = db.get_tour_agency(tour_agency_id)
+    agenc = Agency(*args)
+    return templates.TemplateResponse(request=request, name="edit_agency.html", context={
+            "agenc": agenc
+        })
+
+
 @app.post("/update-tour", response_class=HTMLResponse)
 @limiter.limit("120/minute")
 async def admin_edit_tour_submit(
@@ -264,7 +306,7 @@ async def submit_form(
 
 
 async def main():
-    server = Server(Config(app))
+    server = Server(Config(app, port=80))
     await server.serve()
 
 

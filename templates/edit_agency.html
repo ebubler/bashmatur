@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование тура</title>
+    <link rel="stylesheet" href="/static/edit_tour.css">
+</head>
+<body>
+    <div class="form-section">
+        <h2>Редактировать агентство</h2>
+        <form action="/update-agency" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="tour_id" value="{{ agenc.id }}">
+
+            <label for="title">Название</label>
+            <input value="{{ agenc.title }}" type="text" id="title" name="title" required>
+
+            <label for="photos">Добавить фото</label>
+            <input type="file" id="photos" name="photos" accept="image/*" multiple>
+
+            <label for="url">URL</label>
+            <input value="{{ agenc.url }}" type="text" id="url" name="url" placeholder="Ссылка" required>
+
+            <label for="contacts">Контакты</label>
+            <input value="{{ agenc.contacts }}" type="text" id="contacts" name="contacts" placeholder="Контакты" required>
+
+            <label for="about_us">Описание</label>
+            <textarea id="about_us" name="about_us" rows="4" required>{{ agenc.about_us }}</textarea>
+
+            <button type="submit">Изменить</button>
+        </form>
+    </div>
+</body>
+</html>

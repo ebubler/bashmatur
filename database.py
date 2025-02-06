@@ -78,6 +78,17 @@ class Database:
         cursor.close()
         return res_tour
 
+    def photos_update_agency(self, agency_id, photos):
+        photos = photos[::-1]
+
+        self.connection.execute(f"""
+                UPDATE tour_agencies
+                SET photo = '{', '.join(photos)}' 
+                WHERE id = '{agency_id}'
+                """)
+
+        self.connection.commit()
+
     def photos_update(self, tour_id, photos):
         photos = photos[::-1]
 
@@ -130,6 +141,16 @@ class Database:
                 INSERT INTO tour_requests (tour_id, agency_id, name, mail, phone)
                 VALUES ("{tour_id}", "{agency_id}", "{name}", "{email}", "{phone}")
                 """)
+        self.connection.commit()
+
+    def edit_agency(self, title, url, contacts, about_us, id):
+        self.connection.execute(f"""
+                UPDATE tour_agencies
+                SET title = '{title}', url = '{url}',
+                contacts = '{contacts}', about_us = '{about_us}'
+                WHERE id = {id}
+                """)
+
         self.connection.commit()
 
     def get_tour_agency(self, agency_id):
