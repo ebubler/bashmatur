@@ -245,7 +245,7 @@ async def edit_agency_request(
         for i in range(len(photos)):
             with open(f'static/photo/tour_{data.get("tour_agency_id")}_{i}.png', 'wb') as buffer:
                 shutil.copyfileobj(photos[i].file, buffer)
-            filenames.append(f'tour_{data.get("tour_agency_id")}_{i}.png')
+            filenames.append(f'agency_{data.get("tour_agency_id")}_{i}.png')
 
         db.photos_update_agency(data.get("tour_agency_id"), filenames)
 
