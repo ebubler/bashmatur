@@ -44,7 +44,11 @@
                 <label for="description">Описание</label>
                 <textarea id="description" name="description" rows="4">{{ descriptions.description }}</textarea>
 
+                <label for="photos">Добавить фото</label>
+                <input type="file" id="photos" name="photos" accept="image/*" multiple>
+
                 <button type="submit">Изменить</button>
+                <a type="rem-tour-btn" href="/rem_tour/{{ current_tour.id }}">Удалить тур</a>
             </form>
         </div>
         {% else %}

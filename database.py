@@ -153,6 +153,28 @@ class Database:
 
         self.connection.commit()
 
+    def delete_tour(self, tour_id, r_agency_id):
+        cursor = self.connection.cursor()
+        cursor.execute(f"""
+                SELECT agency_id FROM tours WHERE id = '{tour_id}'
+                """)
+        agency_id = cursor.fetchone()[0]
+        cursor.close()
+        if r_agency_id == agency_id:
+
+            self.connection.execute(f"""
+                        DELETE FROM tours
+                        WHERE id = {tour_id}
+                        """)
+            self.connection.execute(f"""
+                        DELETE FROM tour_descriptions
+                        WHERE tour_id = {tour_id}
+                        """)
+            self.connection.commit()
+            return True
+        return False
+
+
     def get_tour_agency(self, agency_id):
         cursor = self.connection.cursor()
         cursor.execute(f"""

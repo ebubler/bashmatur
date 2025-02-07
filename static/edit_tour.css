@@ -115,6 +115,10 @@ form a:hover {
     margin-left: 30%;
 }
 
+.rem-tour-btn {
+    background-color: red;
+}
+
 .add-tour-btn:hover {
     background-color: #227B22;
 }

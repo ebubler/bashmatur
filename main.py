@@ -273,6 +273,7 @@ async def admin_edit_tour(request: Request, tour_id: int = None):
 async def admin_edit_tour_submit(
     request: Request,
     tour_id: int = Form(...),
+    photos: list[UploadFile] = File(...),
     title: str = Form(...),
     start_time: str = Form(...),
     duration: str = Form(...),
@@ -281,6 +282,14 @@ async def admin_edit_tour_submit(
     description: str = Form(...)
     ):
     db.edit_tour(tour_id, title, start_time, duration, route, tags, description)
+    if photos[0].filename:
+        filenames = []
+        for i in range(len(photos)):
+            with open(f'static/photo/tour_{tour_id}_{i}.png', 'wb') as buffer:
+                shutil.copyfileobj(photos[i].file, buffer)
+            filenames.append(f'tour_{tour_id}_{i}.png')
+
+        db.photos_update(tour_id, filenames)
     return templates.TemplateResponse(request=request, name="tour_added.html")
 
 
@@ -292,6 +301,16 @@ async def tour_booking(request: Request, tour_id: int):
 
     return templates.TemplateResponse(request=request, name="booking.html", context={"tour": tour})
 
+@app.get("/rem_tour/{tour_id}", response_class=HTMLResponse)
+@limiter.limit("120/minute")
+async def remove_tour(request: Request, tour_id: int):
+    tour_agency_id = decode_jwt(request.cookies.get("Authorization")).get("tour_agency_id")
+    if not tour_agency_id:
+        return "NO PERMISSION"
+    res = db.delete_tour(tour_id, tour_agency_id)
+    if not res:
+        return "NO PERMISSION"
+    return templates.TemplateResponse(request=request, name="submit.html")
 
 @app.post("/booking/tour/submit", response_class=HTMLResponse)
 @limiter.limit("120/minute")
@@ -307,7 +326,7 @@ async def submit_form(
 
 
 async def main():
-    server = Server(Config(app, port=80, host='0.0.0.0'))
+    server = Server(Config(app, port=80, host='localhost'))
     await server.serve()
 
 
