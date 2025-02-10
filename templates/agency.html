@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>агенство</title>
+  <title>{{agency.title}}</title>
   <link rel="stylesheet" href="/static/agency.css">
 </head>
 <body>
@@ -43,11 +43,17 @@
 
   <section id="photos">
     <h2>Фотографии</h2>
-    <div class="photo-grid">
-      {% for image in agency.photo.split(',') %}
-        <img class="photo_sigm" src="/static/photo/{{ image.strip() }}" alt="Фото отеля">
-      {% endfor %}
-    </div>
+    <div class="carousel">
+            <button class="nav prev">◀</button>
+                <div class="carousel-images">
+                    {% for image in agency.photo.split(',') %}
+                        <div class="carousel-img-wrapper">
+                            <img src="/static/photo/{{ image.strip() }}" alt="Фото" class="carousel-img">
+                        </div>
+                    {% endfor %}
+                </div>
+            <button class="nav next">▶</button>
+        </div>
   </section>
 
   <section id="about">
@@ -60,5 +66,6 @@
     <p>{{ agency.contacts|safe }}</p>
     <p>Подробнее: <a href="https://{{ agency.url }}">Сайт</a></p>
   </section>
+  <script src="/static/agency.js"></script>
 </body>
 </html>
