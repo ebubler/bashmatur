@@ -7,9 +7,13 @@
   <link rel="stylesheet" href="/static/agency.css">
 </head>
 <body>
-  <header>
-    <h1>{{agency.title}}</h1>
-  </header>
+  <header style="position: relative; height: 300px;">
+  <div style="background: url('/static/photo/{{agency.head_photo}}') no-repeat center center/cover; height: 100%; width: 100%; position: absolute;"></div>
+  <h1 style="position: relative; color: white; font-size: 36px; display: flex; justify-content: center; align-items: center; height: 100%; margin: 0; z-index: 1;">
+    {{agency.title}}
+  </h1>
+</header>
+
 
   <nav>
     <a href="/tours">Главная</a>

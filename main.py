@@ -24,13 +24,14 @@ def similar(a, b):
 
 
 class Agency:
-    def __init__(self, id, title, url, contacts, about_us, photo):
+    def __init__(self, id, title, url, contacts, about_us, photo, head_photo):
         self.id = id
         self.title = title
         self.url = url
         self.contacts = contacts
         self.about_us = about_us
         self.photo = photo
+        self.head_photo = head_photo
 
 
 class Tour:
@@ -230,6 +231,7 @@ async def admin_edit_tour(request: Request, tour_id: int = None):
 async def edit_agency_request(
         request: Request,
         photos: list[UploadFile] = File(...),
+        head_photo: list[UploadFile] = File(...),
         title: str = Form(...),
         url: str = Form(...),
         contacts: str = Form(...),
@@ -249,6 +251,12 @@ async def edit_agency_request(
                 filenames.append(f'agency_{data.get("tour_agency_id")}_{i}.png')
             print(filenames)
             db.photos_update_agency(data.get("tour_agency_id"), filenames)
+
+        if head_photo[0].filename:
+            with open(f'static/photo/head_agency_{data.get("tour_agency_id")}.png', 'wb') as buffer:
+                shutil.copyfileobj(head_photo[0].file, buffer)
+
+            db.head_photo_update_agency(data.get("tour_agency_id"), f'head_agency_{data.get("tour_agency_id")}.png')
 
         return templates.TemplateResponse(request=request, name="tour_added.html")
     return "NO PERMISSION"
@@ -326,7 +334,7 @@ async def submit_form(
 
 
 async def main():
-    server = Server(Config(app, port=80, host='0.0.0.0'))
+    server = Server(Config(app, port=80, host='localhost'))
     await server.serve()
 
 

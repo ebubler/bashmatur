@@ -89,6 +89,17 @@ class Database:
 
         self.connection.commit()
 
+    def head_photo_update_agency(self, agency_id, photo):
+        print(photo)
+
+        self.connection.execute(f"""
+                UPDATE tour_agencies
+                SET head_photo = '{photo}' 
+                WHERE id = '{agency_id}'
+                """)
+
+        self.connection.commit()
+
     def photos_update(self, tour_id, photos):
         photos = photos[::-1]
 
