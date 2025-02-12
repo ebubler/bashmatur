@@ -153,3 +153,34 @@ body {
         width: 210px;
     }
 }
+
+@media (max-width: 768px) {
+    .header form {
+        display: flex;
+        align-items: center;
+        width: 80%; /* Общая ширина формы */
+        max-width: 400px;
+        margin: auto;
+        border: 2px solid #2d8f2d;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .header input[type="text"] {
+        width: 70%; /* Ширина строки 70% */
+        font-size: 12px;
+        padding: 0 5px;
+        border: none;
+        outline: none;
+        height: 20px; /* Высота строки 10px */
+    }
+
+    .header button {
+        width: 40px;
+        height: 100%; /* Делаем кнопку такой же высоты, как инпут */
+        font-size: 0;
+        background: url('/static/search-icon.png') center/70% no-repeat, #2d8f2d;
+        border: none;
+        cursor: pointer;
+    }
+}

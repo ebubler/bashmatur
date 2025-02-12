@@ -197,3 +197,18 @@ body {
 .book-btn:hover {
     background-color: #AAAAAA;
 }
+
+@media (max-width: 768px) {
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* Расстояние между кнопками */
+        align-items: center;
+    }
+
+    .buttons .btn {
+        width: 80%; /* Растягиваем кнопки на всю ширину */
+        text-align: center;
+    }
+}
+

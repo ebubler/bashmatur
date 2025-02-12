@@ -11,8 +11,27 @@ h2 {
     color: #2d8f2d;
 }
 
-h1 {
+.agency-header {
+    position: relative;
+    height: 300px;
+}
+
+.agency-bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.agency-title {
+    position: relative;
     color: white;
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    z-index: 1;
 }
 
 
@@ -136,15 +155,20 @@ section {
 
 /* Адаптация под мобильные устройства */
 @media (max-width: 768px) {
+
+    .agency-header {
+        height: 200px
+    }
+
     .container {
         flex-direction: column;
         align-items: center;
     }
     .card {
-        width: 90%;
+        width: 80%;
     }
     .carousel img {
-        height: 250px; /* Уменьшаем высоту карусели на мобильных */
+        height: 100px; /* Уменьшаем высоту карусели на мобильных */
     }
     .carousel {
     position: relative;
@@ -246,4 +270,39 @@ section {
 .card p {
     margin: 5px 0;
     color: #555;
+}
+
+/* Всегда показываем кнопки на мобильных */
+@media (max-width: 768px) {
+    .nav {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* На ПК показываем кнопки только при наведении */
+.carousel:hover .nav {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    z-index: 10;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.nav:hover {
+    background-color: rgba(0, 0, 0, 0.7);
 }
