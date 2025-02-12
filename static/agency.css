@@ -165,7 +165,7 @@ section {
         align-items: center;
     }
     .card {
-        width: 80%;
+        width: 70%;
     }
     .carousel img {
         height: 100px; /* Уменьшаем высоту карусели на мобильных */
