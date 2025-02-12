@@ -106,6 +106,7 @@ section {
 /* Карусель фотографий */
 .carousel {
     position: relative;
+    height: auto; /* Автоматическая высота */
     max-width: 70%;
     margin: auto;
     overflow: hidden;
@@ -168,11 +169,11 @@ section {
         width: 70%;
     }
     .carousel img {
-        height: 100px; /* Уменьшаем высоту карусели на мобильных */
+        height: 200px; /* Уменьшаем высоту карусели на мобильных */
     }
     .carousel {
     position: relative;
-    max-width: 90%;
+    max-width: 100%;
     margin: auto;
     overflow: hidden;
 }
