@@ -5,40 +5,6 @@ body {
     background-color: #f4f4f4;
 }
 
-.header {
-    background-color: #228B22;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-.header form {
-    margin-top: 10px;
-}
-
-.header input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
-    width: 300px;
-    border-radius: 5px;
-    border: none;
-}
-
-.header button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: white;
-    color: #228B22;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-.header button:hover {
-    background-color: #f8e9fa;
-}
-
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -123,26 +89,49 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
+    background-color: #228B22;
+    color: white;
 }
 
 .header .logo {
-    height: 70px;
-}
-
-.header h1 {
-    flex-grow: 1;
-    text-align: center;
-    margin: 0;
+    height: 80px;
 }
 
 .header .center-text {
     flex-grow: 1;
     text-align: center;
-    font-size: 50px;
+    font-size: 80px;
     font-weight: bold;
-    color: white;
-    margin: 0;
 }
+
+.header form {
+    display: flex;
+    align-items: center;
+}
+
+.header input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    width: 300px;
+    border-radius: 5px;
+    border: none;
+}
+
+.header button {
+    padding: 8px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: #228B22;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.header button:hover {
+    background-color: #f8e9fa;
+}
+
 
 @media (max-width: 768px) {
     .header form {
@@ -183,16 +172,8 @@ body {
         padding: 10px;
     }
 
-    .header .top-row {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        position: relative; /* Позволяет центрировать текст */
-    }
-
     .header .logo {
-        height: 50px;
+        height: 40px;
         position: absolute;
         left: 0; /* Закрепляем логотип слева */
     }
