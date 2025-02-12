@@ -151,14 +151,14 @@ body {
         padding: 0 0px;
         border: none;
         outline: none;
-        height: 20px; /* Высота строки 10px */
+        height: 25px; /* Высота строки 10px */
     }
 
     .header button {
-        width: 40px;
-        height: 100%; /* Делаем кнопку такой же высоты, как инпут */
+        width: 25px;
+        height: 25px; /* Делаем кнопку такой же высоты, как инпут */
         font-size: 0;
-        background: url('/static/search-icon.png') center/70% no-repeat, #228B22;
+        background: url('/static/search-icon.png') center/80% no-repeat, #228B22;
         border: none;
         cursor: pointer;
     }
