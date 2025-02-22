@@ -30,7 +30,9 @@ class Agency:
         self.url = url
         self.contacts = contacts
         self.about_us = about_us
-        self.photo = photo
+        self.cover_photo = photo.split(',')[0]
+        self.c_photo = len(photo.split(','))
+        self.photo = photo.split(',')
         self.head_photo = head_photo
 
 
@@ -48,12 +50,15 @@ class Tour:
 
 
 class TourDescription:
-    def __init__(self, id, tour_id, description, include, photo2):
+    def __init__(self, id, tour_id, description, include, photo):
         self.id = id
         self.tour_id = tour_id
         self.description = description
         self.include = include
-        self.photo2 = photo2
+        self.cover_photo = photo.split(',')[0]
+        self.c_photo = len(photo.split(','))
+        self.photo = photo.split(',')
+        print(self.photo)
 
 
 class BookingRequest(BaseModel):
